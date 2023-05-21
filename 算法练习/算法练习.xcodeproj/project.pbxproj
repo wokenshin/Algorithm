@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494C3BFC2A1A74A1005BE0F2 /* RemoveSpaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 494C3BFA2A1A74A1005BE0F2 /* RemoveSpaces.cpp */; };
+		494C3BFF2A1A75D0005BE0F2 /* FindRepeatCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 494C3BFD2A1A75D0005BE0F2 /* FindRepeatCode.cpp */; };
 		49F71FDC2A186FAB00227CDE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49F71FDB2A186FAB00227CDE /* main.cpp */; };
 		49F71FE72A1926B800227CDE /* ArrayMerge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49F71FE52A1926B800227CDE /* ArrayMerge.cpp */; };
 /* End PBXBuildFile section */
@@ -24,6 +26,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		494C3BFA2A1A74A1005BE0F2 /* RemoveSpaces.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RemoveSpaces.cpp; sourceTree = "<group>"; };
+		494C3BFB2A1A74A1005BE0F2 /* RemoveSpaces.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RemoveSpaces.hpp; sourceTree = "<group>"; };
+		494C3BFD2A1A75D0005BE0F2 /* FindRepeatCode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FindRepeatCode.cpp; sourceTree = "<group>"; };
+		494C3BFE2A1A75D0005BE0F2 /* FindRepeatCode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FindRepeatCode.hpp; sourceTree = "<group>"; };
 		49F71FD82A186FAB00227CDE /* 算法练习 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "算法练习"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F71FDB2A186FAB00227CDE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		49F71FE52A1926B800227CDE /* ArrayMerge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ArrayMerge.cpp; sourceTree = "<group>"; };
@@ -63,6 +69,10 @@
 				49F71FDB2A186FAB00227CDE /* main.cpp */,
 				49F71FE52A1926B800227CDE /* ArrayMerge.cpp */,
 				49F71FE62A1926B800227CDE /* ArrayMerge.hpp */,
+				494C3BFA2A1A74A1005BE0F2 /* RemoveSpaces.cpp */,
+				494C3BFB2A1A74A1005BE0F2 /* RemoveSpaces.hpp */,
+				494C3BFD2A1A75D0005BE0F2 /* FindRepeatCode.cpp */,
+				494C3BFE2A1A75D0005BE0F2 /* FindRepeatCode.hpp */,
 			);
 			path = "算法练习";
 			sourceTree = "<group>";
@@ -124,7 +134,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494C3BFF2A1A75D0005BE0F2 /* FindRepeatCode.cpp in Sources */,
 				49F71FE72A1926B800227CDE /* ArrayMerge.cpp in Sources */,
+				494C3BFC2A1A74A1005BE0F2 /* RemoveSpaces.cpp in Sources */,
 				49F71FDC2A186FAB00227CDE /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
