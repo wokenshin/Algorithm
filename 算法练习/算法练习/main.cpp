@@ -1,45 +1,89 @@
-#include <iostream>
-#include <map>
+#include<algorithm>
+#include<iostream>
+#include <vector>
 using namespace std;
 
-
-int main() {
-    //输入部分
-    int N,m;
-    cin >> N >> m;
-    int v,p,q;
-    map<int, map<int, int>> arr[m];
-    map<int, map<int, int>>myMap;//价格:[重要程度:是否有主件]
+// 暴力求解
+void func1() {
+    int n;//n个物品
+    int v;//背包体积
+    cin>>n>>v;
     
-    for(int i = 0; i < m; i++) {
-        cin >> v >> p >> q;
-        map<int, int>subMap;
-        subMap[p] = q;
-        myMap[v] = subMap;
-        arr[i] = myMap;
+    //注意此处的N至少要比最大范围多1
+    const int N=1001;
+    int V[N];//每个物品对应的体积
+    int W[N];//每个物品对应的价值
+    //存储输入
+    for(int i=1;i<=n;i++) {
+        cin>>V[i]>>W[i];
     }
     
-    //输出部分
-    
+    int f[N][N];//用来存放结果
+    for(int i=1;i<=n;i++) {
+        //背包容量需从0,...,v
+        for(int j=0;j<=v;j++) {
+//当前背包体积<当前物品体积，装不下当前物品、那么当前背包体积的最大值就是：前一个物品放进背包后的最大值
+            if(j<V[i]) {
+                f[i][j]=f[i-1][j];
+            } else {
+//当前背包体积>当前物品体积，可以装下当前物品、那么当前背包体积的最大值就是：(放入当前物品前的最大值) 和 (放入当前物品后，背包的值+剩余体积的最大值) 之间的最大值
+                f[i][j]=max(f[i-1][j],f[i-1][j-V[i]]+W[i]);
+            }
+        }
+    }
+    cout << f[n][v] << endl;
 }
 
+//暴力求解
+int knapsack(int n, int V, vector<vector<int> >& vw) {
+    int f[n+1][V+1];//用来存放结果
+    for(int i = 0; i < n+1; i++) {
+        for (int j = 0; j < V+1; j++) {
+            f[i][j] = 0;
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= V; j++) {
+            if (j < vw[i-1][0]) {
+                f[i][j] = f[i - 1][j];
+            } else {
+                f[i][j] = max(f[i - 1][j], f[i - 1][j - vw[i-1][0]] + vw[i-1][1]);
+            }
+        }
+    }
+    return f[n][V];
+}
+
+void func2() {
+    vector<vector<int>>vec;
+    vector<int>vec1;
+    vector<int>vec2;
+    vector<int>vec3;
+    
+    vec1.push_back(2);
+    vec1.push_back(3);
+    
+    vec2.push_back(3);
+    vec2.push_back(4);
+    
+    vec3.push_back(4);
+    vec3.push_back(5);
+    
+//    vec.push_back(vector<int>());
+    vec.push_back(vec1);
+    vec.push_back(vec2);
+    vec.push_back(vec3);
+    cout << knapsack(3, 6, vec) << endl;
+}
+int main()
+{
+//    func1();
+    func2();
+    return 0;
+}
 /*
- 1000 5
- 800 2 0
- 400 5 1
- 300 5 1
- 400 3 0
- 500 2 0
- 条件
- 1、如果要买归类为附件的物品，必须先买该附件所属的主件
- 2、每件物品只能购买一次
- 3、每个主件可以有 0 个、 1 个或 2 个附件
- 
- 要求 获取最大值
- 
- 公式：x个主件+y个附件 这里的y个附件中对应的主件一定包含在x里、x里有的主件不一定有对应的附件在y里
- v：价格
- p：重要程度---权重
- q：q>0 ，表示该物品为附件， q 是所属主件的编号
- 
+ 3 6
+ 2 3
+ 3 5
+ 4 6
  */
