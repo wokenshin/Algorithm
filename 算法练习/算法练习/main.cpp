@@ -1,89 +1,35 @@
-#include<algorithm>
-#include<iostream>
-#include <vector>
+#include <iostream>
+#include <string>
+#include <regex>
+
 using namespace std;
 
-// 暴力求解
-void func1() {
-    int n;//n个物品
-    int v;//背包体积
-    cin>>n>>v;
-    
-    //注意此处的N至少要比最大范围多1
-    const int N=1001;
-    int V[N];//每个物品对应的体积
-    int W[N];//每个物品对应的价值
-    //存储输入
-    for(int i=1;i<=n;i++) {
-        cin>>V[i]>>W[i];
-    }
-    
-    int f[N][N];//用来存放结果
-    for(int i=1;i<=n;i++) {
-        //背包容量需从0,...,v
-        for(int j=0;j<=v;j++) {
-//当前背包体积<当前物品体积，装不下当前物品、那么当前背包体积的最大值就是：前一个物品放进背包后的最大值
-            if(j<V[i]) {
-                f[i][j]=f[i-1][j];
-            } else {
-//当前背包体积>当前物品体积，可以装下当前物品、那么当前背包体积的最大值就是：(放入当前物品前的最大值) 和 (放入当前物品后，背包的值+剩余体积的最大值) 之间的最大值
-                f[i][j]=max(f[i-1][j],f[i-1][j-V[i]]+W[i]);
-            }
+
+//匹配整个字符串
+void regex_matchDemo() {
+    string str;
+    while(cin >> str) {
+        if(regex_match(str, regex("[a-z]{1,100}"))) {//匹配小写字母、范围是1到100个字符
+            cout << "匹配" << endl;
+        } else {
+            cout << "不匹配" << endl;
         }
     }
-    cout << f[n][v] << endl;
 }
 
-//暴力求解
-int knapsack(int n, int V, vector<vector<int> >& vw) {
-    int f[n+1][V+1];//用来存放结果
-    for(int i = 0; i < n+1; i++) {
-        for (int j = 0; j < V+1; j++) {
-            f[i][j] = 0;
-        }
-    }
-    for (int i = 1; i <= n; i++) {
-        for (int j = 0; j <= V; j++) {
-            if (j < vw[i-1][0]) {
-                f[i][j] = f[i - 1][j];
-            } else {
-                f[i][j] = max(f[i - 1][j], f[i - 1][j - vw[i-1][0]] + vw[i-1][1]);
-            }
-        }
-    }
-    return f[n][V];
+//匹配子串-搜索匹配
+void regex_searchDemo() {
+    
 }
 
-void func2() {
-    vector<vector<int>>vec;
-    vector<int>vec1;
-    vector<int>vec2;
-    vector<int>vec3;
-    
-    vec1.push_back(2);
-    vec1.push_back(3);
-    
-    vec2.push_back(3);
-    vec2.push_back(4);
-    
-    vec3.push_back(4);
-    vec3.push_back(5);
-    
-//    vec.push_back(vector<int>());
-    vec.push_back(vec1);
-    vec.push_back(vec2);
-    vec.push_back(vec3);
-    cout << knapsack(3, 6, vec) << endl;
+//正则替换
+void regex_replaceDemo() {
+    string str = "han-ki-bou";
+    cout << regex_replace(str, regex("-"), "/") << endl;//将字符串中符合正则的内容修改为 /
+    cout << str << endl;//正则不会修改原字符串内容、而是返回一个新的字符串
 }
-int main()
-{
-//    func1();
-    func2();
+
+int main() {
+    regex_replaceDemo();
     return 0;
 }
-/*
- 3 6
- 2 3
- 3 5
- 4 6
- */
